@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: web-cont
-        image: %IMAGE-NAME%:%IMAGE-TAG%
+        image: dof-learning:02
         ports:
         - containerPort: 80 
 ---
