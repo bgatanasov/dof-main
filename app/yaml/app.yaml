@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: exam-app-web-deploy
+  name: dof-exam-01
 spec:
   replicas: 3
   selector:
     matchLabels: 
-      app: exam-app-web
+      app: exam-web
   minReadySeconds: 10
   strategy:
     type: RollingUpdate
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        app: exam-app-web
+        app: exam-web
     spec:
       containers:
       - name: web-cont
@@ -29,7 +29,7 @@ kind: Service
 metadata:
   name: web-host
   labels:
-    app: exam-app-web-svc
+    app: exam-web-svc
 spec:
   type: NodePort
   ports:
@@ -37,14 +37,14 @@ spec:
     nodePort: 31000
     protocol: TCP
   selector:
-    app: exam-app-web
+    app: exam-web
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: exam-app-db
+  name: exam-db
   labels:
-    app: exam-app-db
+    app: exam-db
 spec:
   containers:
   - name: db-cont
@@ -57,10 +57,10 @@ kind: Service
 metadata:
   name: db-host
   labels:
-    app: exam-app-db-svc
+    app: exam-db-svc
 spec:
   ports:
   - port: 6379
     protocol: TCP
   selector:
-    app: exam-app-db
+    app: exam-db
