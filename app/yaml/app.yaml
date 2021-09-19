@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: web-cont
-        image: %IMAGE-PLACEHOLDER%:%IMAGE-TAG%
+        image: %IMAGE-PLACEHOLDER%:01
         ports:
         - containerPort: 80 
 ---
