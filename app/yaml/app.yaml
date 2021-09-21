@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: web-cont
-        image: bgatanasov/dof-laerning:01
+        image: bgatanasov/dof-laerning:%IMAGE-PLACEHOLDER%
         ports:
         - containerPort: 80 
 ---
