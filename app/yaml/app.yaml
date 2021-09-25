@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dof-exam-01
+  name: exam-app-web-deploy
 spec:
   replicas: 3
   selector:
     matchLabels: 
-      app: exam-web
+      app: exam-app-web
   minReadySeconds: 10
   strategy:
     type: RollingUpdate
@@ -16,11 +16,11 @@ spec:
   template:
     metadata:
       labels:
-        app: exam-web
+        app: exam-app-web
     spec:
       containers:
       - name: web-cont
-        image: bgatanasov/dof-learning:%IMAGE-PLACEHOLDER%
+        image: %IMAGE-NAME%:%IMAGE-TAG%
         ports:
         - containerPort: 80 
 ---
@@ -29,22 +29,22 @@ kind: Service
 metadata:
   name: web-host
   labels:
-    app: exam-web-svc
+    app: exam-app-web-svc
 spec:
   type: NodePort
   ports:
   - port: 80
-    nodePort: 32005
+    nodePort: 31000
     protocol: TCP
   selector:
-    app: exam-web
+    app: exam-app-web
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: exam-db
+  name: exam-app-db
   labels:
-    app: exam-db
+    app: exam-app-db
 spec:
   containers:
   - name: db-cont
@@ -57,10 +57,10 @@ kind: Service
 metadata:
   name: db-host
   labels:
-    app: exam-db-svc
+    app: exam-app-db-svc
 spec:
   ports:
   - port: 6379
     protocol: TCP
   selector:
-    app: exam-db
+    app: exam-app-db
