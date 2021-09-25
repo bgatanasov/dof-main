@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: exam-app-web-deploy
+  name: web-host
 spec:
   replicas: 3
   selector:
@@ -42,7 +42,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: exam-app-db
+  name: db-host
   labels:
     app: exam-app-db
 spec:
