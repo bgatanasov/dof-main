@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: web-cont
-        image: %web-host01%:%IMAGE-TAG%
+        image: bgatanasov/dof-learning:%web-host01%
         ports:
         - containerPort: 80 
 ---
