@@ -6,7 +6,7 @@ spec:
   replicas: 3
   selector:
     matchLabels: 
-      app: exam-app-web
+      app: web-host
   minReadySeconds: 10
   strategy:
     type: RollingUpdate
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        app: exam-app-web
+        app: web-host
     spec:
       containers:
       - name: web-host
@@ -29,7 +29,7 @@ kind: Service
 metadata:
   name: web-host
   labels:
-    app: exam-app-web-svc
+    app: web-host-svc
 spec:
   type: NodePort
   ports:
@@ -37,17 +37,17 @@ spec:
     nodePort: 31000
     protocol: TCP
   selector:
-    app: exam-app-web
+    app: web-host
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: host-db
+  name: db-host
   labels:
-    app: exam-app-db
+    app: db-host
 spec:
   containers:
-  - name: db-cont
+  - name: db-count
     image: redis
     ports:
     - containerPort: 6379 
@@ -57,10 +57,10 @@ kind: Service
 metadata:
   name: db-host
   labels:
-    app: exam-app-db-svc
+    app: db-host-svc
 spec:
   ports:
   - port: 6379
     protocol: TCP
   selector:
-    app: exam-app-db
+    app: db-host
