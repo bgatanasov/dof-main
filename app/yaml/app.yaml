@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: exam-app-web-deploy
+  name: web-host
 spec:
   replicas: 3
   selector:
@@ -19,7 +19,7 @@ spec:
         app: exam-app-web
     spec:
       containers:
-      - name: web-cont
+      - name: web-host
         image: %IMAGE-NAME%:%IMAGE-TAG%
         ports:
         - containerPort: 80 
